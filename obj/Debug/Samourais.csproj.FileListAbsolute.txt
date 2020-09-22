@@ -89,3 +89,5 @@ C:\Users\drouxel2020\source\repos\Samourais\Samourais\bin\EntityFramework.dll
 C:\Users\drouxel2020\source\repos\Samourais\Samourais\bin\EntityFramework.SqlServer.dll
 C:\Users\drouxel2020\source\repos\Samourais\Samourais\bin\EntityFramework.xml
 C:\Users\drouxel2020\source\repos\Samourais\Samourais\bin\EntityFramework.SqlServer.xml
+C:\Users\drouxel2020\source\repos\Samourais\Samourais\obj\Debug\Samourais.Migrations.Mig1.resources
+C:\Users\drouxel2020\source\repos\Samourais\Samourais\obj\Debug\Samourais.csproj.GenerateResource.cache
