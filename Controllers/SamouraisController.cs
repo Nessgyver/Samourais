@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BO;
 using Samourais.Data;
+using Samourais.Models;
 
 namespace Samourais.Controllers
 {
@@ -39,7 +40,9 @@ namespace Samourais.Controllers
         // GET: Samourais/Create
         public ActionResult Create()
         {
-            return View();
+            SamouraiVM samouraiVM = new SamouraiVM() {  Samourai = new Samourai(),
+                                                        ListeArmes = db.Armes.Select(x=>x).ToList()};
+            return View(samouraiVM);
         }
 
         // POST: Samourais/Create
@@ -47,16 +50,17 @@ namespace Samourais.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Force,Nom")] Samourai samourai)
+        public ActionResult Create(SamouraiVM samouraiVM)
         {
             if (ModelState.IsValid)
             {
-                db.Samourais.Add(samourai);
+                samouraiVM.Samourai.Arme = db.Armes.FirstOrDefault(x=>x.Id == samouraiVM.IdArme);
+                db.Samourais.Add(samouraiVM.Samourai);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(samourai);
+            samouraiVM.ListeArmes = db.Armes.Select(x => x).ToList();
+            return View(samouraiVM);
         }
 
         // GET: Samourais/Edit/5
@@ -71,7 +75,17 @@ namespace Samourais.Controllers
             {
                 return HttpNotFound();
             }
-            return View(samourai);
+            SamouraiVM samouraiVM = new SamouraiVM()
+            {
+                Samourai = samourai,
+                ListeArmes = db.Armes.Select(x => x).ToList(),
+            };
+            if(samourai.Arme != null)
+            {
+                samouraiVM.IdArme = samourai.Arme.Id;
+
+            }
+            return View(samouraiVM);
         }
 
         // POST: Samourais/Edit/5
@@ -79,15 +93,20 @@ namespace Samourais.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Force,Nom")] Samourai samourai)
+        public ActionResult Edit(SamouraiVM samouraiVM)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(samourai).State = EntityState.Modified;
+                Samourai sam = db.Samourais.Find(samouraiVM.Samourai.Id);
+                Arme arme = sam.Arme;
+                sam.Arme = db.Armes.FirstOrDefault(x => x.Id == samouraiVM.IdArme);
+                db.Entry(sam).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View(samourai);
+            samouraiVM.ListeArmes = db.Armes.Select(x => x).ToList();
+            return View(samouraiVM);
         }
 
         // GET: Samourais/Delete/5

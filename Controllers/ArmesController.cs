@@ -111,6 +111,12 @@ namespace Samourais.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Arme arme = db.Armes.Find(id);
+            List<Samourai> samourais = db.Samourais.ToList();
+            foreach (var samourai in samourais.Where(x => x.Arme.Id == id).ToList())
+            {
+                Arme armeSam = samourai.Arme;
+                samourai.Arme = null;
+            }
             db.Armes.Remove(arme);
             db.SaveChanges();
             return RedirectToAction("Index");
