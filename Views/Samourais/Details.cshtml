@@ -34,6 +34,20 @@
             @Html.DisplayFor(model => model.Arme.Nom)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtMartials)
+        </dt>
+
+        <dd>
+            @if (Model.ArtMartials != null)
+            {
+                foreach (var artMartial in Model.ArtMartials)
+                {
+                    @Html.DisplayFor(model => artMartial.Nom)
+                }
+            }
+        </dd>
+
     </dl>
 </div>
 <p>
