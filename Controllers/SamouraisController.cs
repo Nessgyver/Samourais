@@ -40,8 +40,12 @@ namespace Samourais.Controllers
         // GET: Samourais/Create
         public ActionResult Create()
         {
-            SamouraiVM samouraiVM = new SamouraiVM() {  Samourai = new Samourai(),
-                                                        ListeArmes = db.Armes.Select(x=>x).ToList()};
+
+            SamouraiVM samouraiVM = new SamouraiVM() 
+            {   
+                Samourai = new Samourai(),
+                ListeArmes = db.Armes.Where(y=>!db.Samourais.Select(x => x.Arme.Id).ToList().Contains(y.Id)).ToList()
+            };
             return View(samouraiVM);
         }
 

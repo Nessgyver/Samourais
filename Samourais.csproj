@@ -133,9 +133,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009211446571_Mig1.cs" />
-    <Compile Include="Migrations\202009211446571_Mig1.Designer.cs">
-      <DependentUpon>202009211446571_Mig1.cs</DependentUpon>
+    <Compile Include="Migrations\202009230756129_Mig1.cs" />
+    <Compile Include="Migrations\202009230756129_Mig1.Designer.cs">
+      <DependentUpon>202009230756129_Mig1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SamouraiVM.cs" />
@@ -211,8 +211,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009211446571_Mig1.resx">
-      <DependentUpon>202009211446571_Mig1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202009230756129_Mig1.resx">
+      <DependentUpon>202009230756129_Mig1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

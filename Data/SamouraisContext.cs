@@ -26,7 +26,7 @@ namespace Samourais.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Samourai>().HasRequired(s => s.Arme).WithOptional(a=>a.Samourai);
+            modelBuilder.Entity<Samourai>().HasOptional(s => s.Arme).WithOptionalPrincipal();
             modelBuilder.Entity<Samourai>().HasMany(s => s.ArtMartials).WithMany();
         }
     }
